@@ -1,0 +1,226 @@
+
+------------------------------------Row # 1-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+     DATA1                   5                             User ident.
+   SEGMENT                   7                               Directive
+
+------------------------------------Row # 2-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+   BINCON1                   7                             User ident.
+        DB                   2                               Directive
+    10011B                   6                               Bin const
+
+------------------------------------Row # 3-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+   BINCON2                   7                             User ident.
+        DB                   2                               Directive
+    11101B                   6                               Bin const
+
+------------------------------------Row # 4-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+  STRCONST                   8                             User ident.
+        DB                   2                               Directive
+"Test строки."                  20                              Text const
+
+------------------------------------Row # 5-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+  DECCONST                   8                             User ident.
+        DW                   2                               Directive
+     4567D                   5                               Dec const
+
+------------------------------------Row # 6-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+  HEXCONST                   8                             User ident.
+        DD                   2                               Directive
+   7856FDH                   7                               Hex const
+
+------------------------------------Row # 7-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+     DATA1                   5                             User ident.
+      ENDS                   4                               Directive
+
+------------------------------------Row # 9-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+       DFG                   3                             User ident.
+       EQU                   3                               Directive
+         1                   1                               Dec const
+
+------------------------------------Row #10-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+      DFG1                   4                             User ident.
+       EQU                   3                               Directive
+         0                   1                               Dec const
+
+------------------------------------Row #12-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+      CODE                   4                             User ident.
+   SEGMENT                   7                               Directive
+
+------------------------------------Row #13-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+       NOP                   3                           Machine comm.
+
+------------------------------------Row #14-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+       MOV                   3                           Machine comm.
+        AH                   2                             8b register
+         ,                   1                            Single lexem
+         0                   1                               Dec const
+
+------------------------------------Row #15-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+       INC                   3                           Machine comm.
+        AH                   2                             8b register
+
+------------------------------------Row #16-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+       MOV                   3                           Machine comm.
+       EAX                   3                            32b register
+         ,                   1                            Single lexem
+       DFG                   3                             User ident.
+
+------------------------------------Row #17-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+       INC                   3                           Machine comm.
+       EAX                   3                            32b register
+
+------------------------------------Row #18-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+       DEC                   3                           Machine comm.
+      BYTE                   4                          Type of ident.
+       PTR                   3                   Operator of type def.
+        ES                   2                             Segment reg
+         :                   1                            Single lexem
+         [                   1                            Single lexem
+       EDX                   3                            32b register
+         +                   1                            Single lexem
+       ESI                   3                            32b register
+         +                   1                            Single lexem
+         6                   1                               Dec const
+         ]                   1                            Single lexem
+
+------------------------------------Row #20-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+    LABEL1                   6                             User ident.
+         :                   1                            Single lexem
+
+------------------------------------Row #21-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+       ADD                   3                           Machine comm.
+       EAX                   3                            32b register
+         ,                   1                            Single lexem
+       ESI                   3                            32b register
+
+------------------------------------Row #22-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+        IF                   2                               Directive
+      DFG1                   4                             User ident.
+
+------------------------------------Row #23-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+       ADD                   3                           Machine comm.
+        AH                   2                             8b register
+         ,                   1                            Single lexem
+        BH                   2                             8b register
+
+------------------------------------Row #24-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+      ELSE                   4                               Directive
+
+------------------------------------Row #25-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+       ADD                   3                           Machine comm.
+        AH                   2                             8b register
+         ,                   1                            Single lexem
+        BH                   2                             8b register
+
+------------------------------------Row #26-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+     ENDIF                   5                               Directive
+
+------------------------------------Row #27-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+       CMP                   3                           Machine comm.
+       EAX                   3                            32b register
+         ,                   1                            Single lexem
+         [                   1                            Single lexem
+       EDX                   3                            32b register
+         +                   1                            Single lexem
+       ESI                   3                            32b register
+         +                   1                            Single lexem
+        12                   2                               Dec const
+         ]                   1                            Single lexem
+
+------------------------------------Row #28-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+        JB                   2                           Machine comm.
+    LABEL1                   6                             User ident.
+
+------------------------------------Row #29-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+        JB                   2                           Machine comm.
+    LABEL2                   6                             User ident.
+
+------------------------------------Row #31-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+    LABEL2                   6                             User ident.
+         :                   1                            Single lexem
+
+------------------------------------Row #32-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+        IF                   2                               Directive
+       DFG                   3                             User ident.
+
+------------------------------------Row #33-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+       AND                   3                           Machine comm.
+     DWORD                   5                          Type of ident.
+       PTR                   3                   Operator of type def.
+         [                   1                            Single lexem
+       EDX                   3                            32b register
+         +                   1                            Single lexem
+       ESI                   3                            32b register
+         +                   1                            Single lexem
+         6                   1                               Dec const
+         ]                   1                            Single lexem
+         ,                   1                            Single lexem
+       EAX                   3                            32b register
+
+------------------------------------Row #34-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+      ELSE                   4                               Directive
+
+------------------------------------Row #35-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+        OR                   2                           Machine comm.
+     DWORD                   5                          Type of ident.
+       PTR                   3                   Operator of type def.
+         [                   1                            Single lexem
+       EDX                   3                            32b register
+         +                   1                            Single lexem
+       ESI                   3                            32b register
+         +                   1                            Single lexem
+         6                   1                               Dec const
+         ]                   1                            Single lexem
+         ,                   1                            Single lexem
+      123H                   4                               Hex const
+
+------------------------------------Row #36-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+       CMP                   3                           Machine comm.
+        AH                   2                             8b register
+         ,                   1                            Single lexem
+        BH                   2                             8b register
+
+------------------------------------Row #37-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+     ENDIF                   5                               Directive
+
+------------------------------------Row #39-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+      CODE                   4                             User ident.
+      ENDS                   4                               Directive
+
+------------------------------------Row #40-------------------------------------
+     LEXEM              LENGTH                              LEXEM TYPE
+       END                   3                               Directive

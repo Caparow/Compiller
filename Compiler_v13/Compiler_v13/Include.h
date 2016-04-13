@@ -1,0 +1,9 @@
+#include "Lexems.h"
+#include "Token_tables.h"
+#include <iostream>
+#include <Windows.h>
+#include <set>
+#include <vector>
+#include <map>
+#include <string>
+#include <fstream>
