@@ -18,12 +18,18 @@
     <ClInclude Include="Lexical_analizer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Sentence.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Lexical_analizer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sentence.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

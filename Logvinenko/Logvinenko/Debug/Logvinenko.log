@@ -1,22 +1,13 @@
-﻿Build started 17.03.2016 0:07:31.
-     1>Project "D:\Кепаров\CPP-REPOSITORY\Logvinenko\Logvinenko\Logvinenko.vcxproj" on node 2 (Build target(s)).
+﻿Build started 14.04.2016 9:41:27.
+     1>Project "D:\Кепаров\Compiller\Logvinenko\Logvinenko\Logvinenko.vcxproj" on node 2 (Build target(s)).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(388,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (CompilerSP.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Lexical_analizer.cpp Main.cpp
-         Main.cpp
-         Lexical_analizer.cpp
-     1>d:\кепаров\cpp-repository\logvinenko\logvinenko\lexical_analizer.cpp(8): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\cpp-repository\logvinenko\logvinenko\lexical_analizer.cpp(15): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\cpp-repository\logvinenko\logvinenko\lexical_analizer.cpp(55): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\cpp-repository\logvinenko\logvinenko\lexical_analizer.cpp(85): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\cpp-repository\logvinenko\logvinenko\lexical_analizer.cpp(149): warning C4018: '<' : signed/unsigned mismatch
-         Generating Code...
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Кепаров\CPP-REPOSITORY\Logvinenko\Debug\Logvinenko.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Кепаров\CPP-REPOSITORY\Logvinenko\Debug\Logvinenko.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Кепаров\CPP-REPOSITORY\Logvinenko\Debug\Logvinenko.lib" /MACHINE:X86 Debug\Lexical_analizer.obj
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Кепаров\Compiller\Logvinenko\Debug\Logvinenko.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Кепаров\Compiller\Logvinenko\Debug\Logvinenko.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Кепаров\Compiller\Logvinenko\Debug\Logvinenko.lib" /MACHINE:X86 Debug\Lexical_analizer.obj
          Debug\Main.obj
-         Logvinenko.vcxproj -> D:\Кепаров\CPP-REPOSITORY\Logvinenko\Debug\Logvinenko.exe
-     1>Done Building Project "D:\Кепаров\CPP-REPOSITORY\Logvinenko\Logvinenko\Logvinenko.vcxproj" (Build target(s)).
+         Debug\Sentence.obj
+         Logvinenko.vcxproj -> D:\Кепаров\Compiller\Logvinenko\Debug\Logvinenko.exe
+     1>Done Building Project "D:\Кепаров\Compiller\Logvinenko\Logvinenko\Logvinenko.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.85
+Time Elapsed 00:00:00.31

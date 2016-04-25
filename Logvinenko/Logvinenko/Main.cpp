@@ -1,5 +1,7 @@
 #pragma warning(disable: 4018)
+
 #include "Lexical_analizer.h"
+#include "Sentence.h"
 
 int main()
 {
@@ -39,6 +41,8 @@ int main()
 		GenerateLexemVector(code, lexems);
 		AnalizeLexems(lexems, tokens);
 		OutputTokens(tokens, name);
+		vector<Sentence> sen = getSentenceTable(tokens);
+		OutputSentences(sen, name);
 	}
 	else
 	{

@@ -31,6 +31,7 @@ struct Token
 {
 	Lexem lex;
 	LexType lexType;
+	int LNum, LLen;
 };
 
 const string directivesA[] = { "END", "SEGMENT", "ENDS", "EQU", "DB", "DW", "DD", "IF", "ENDIF", "EQU" };
