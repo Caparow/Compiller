@@ -22,11 +22,12 @@ label1:
 	IF dfg1
 		add ah, bh
 	ELSE
-		add ah, bh
+		or dword ptr [edx+esi+6], 123h
 	ENDIF
 	cmp eax, [edx+esi+12]
 	jb label1
 	jb label2
+	inc edx
 
 label2:
 	IF dfg
@@ -34,6 +35,7 @@ label2:
 	ELSE
 		or dword ptr [edx+esi+6], 123h
 		cmp ah, bh
+		jb label2
 	ENDIF 
 
 Code ends

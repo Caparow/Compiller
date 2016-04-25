@@ -35,7 +35,7 @@ LexicalAnalizer::LexicalAnalizer(string fileName)
 
 		GenerateLexemVector();
 		AnalizeLexems();
-		OutputTokens(fileName);
+		//OutputTokens(fileName);
 	}
 	else
 	{

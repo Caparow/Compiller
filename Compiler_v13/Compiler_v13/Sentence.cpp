@@ -129,4 +129,6 @@ void OutputSentences(vector<Sentence> s, string filename)
 		cout << endl;
 		file << endl;
 	}
+	cout << endl << endl;
+	file.close();
 }
