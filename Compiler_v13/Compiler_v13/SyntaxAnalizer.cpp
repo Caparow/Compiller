@@ -16,6 +16,8 @@ vector<list> getIntBytes(vector<string> code, vector<Sentence> s)
 	string tmpVal = "";
 	segment tmpSeg;
 
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
 	int i = 0;
 	while (i < s.size())
 	{
@@ -75,6 +77,16 @@ vector<list> getIntBytes(vector<string> code, vector<Sentence> s)
 		}
 		else if (s[i].comTok.lex.text == "DB")
 		{
+			if (s[i].Operands.size() > 1 || s[i].Operands[0].OpV.size() > 1)
+			{
+				SetConsoleTextAttribute(hConsole, 4);
+				cout << "Wrong operands:" ;
+				SetConsoleTextAttribute(hConsole, 7);
+				cout << code[codeInd - 1] << endl;
+				ERR_FLAG = true;
+			}
+
+
 			tmpIdent.value = tmpVal;
 
 			if (s[i].Operands[0].OpV[0].lexemType == LexType::TEXT_CONST)
@@ -87,6 +99,15 @@ vector<list> getIntBytes(vector<string> code, vector<Sentence> s)
 			}
 		else if (s[i].comTok.lex.text == "DD")
 		{
+			if (s[i].Operands.size() > 1 || s[i].Operands[0].OpV.size() > 1)
+			{
+				SetConsoleTextAttribute(hConsole, 4);
+				cout << "Wrong operands:";
+				SetConsoleTextAttribute(hConsole, 7);
+				cout << code[codeInd - 1] << endl;
+				ERR_FLAG = true;
+			}
+
 			tmpIdent.value = tmpVal;
 			tmpByte += 4;
 			tmpIdent.attr = segName;
@@ -95,6 +116,15 @@ vector<list> getIntBytes(vector<string> code, vector<Sentence> s)
 		}
 		else if (s[i].comTok.lex.text == "DW")
 		{
+			if (s[i].Operands.size() > 1 || s[i].Operands[0].OpV.size() > 1)
+			{
+				SetConsoleTextAttribute(hConsole, 4);
+				cout << "Wrong operands:";
+				SetConsoleTextAttribute(hConsole, 7);
+				cout << code[codeInd - 1] << endl;
+				ERR_FLAG = true;
+			}
+
 			tmpIdent.value = tmpVal;
 			tmpByte += 2;
 			tmpIdent.attr = segName;
@@ -112,6 +142,15 @@ vector<list> getIntBytes(vector<string> code, vector<Sentence> s)
 		}
 		else if (s[i].comTok.lex.text == "EQU")
 		{
+			if (s[i].Operands.size() > 1 || s[i].Operands[0].OpV.size() > 1)
+			{
+				SetConsoleTextAttribute(hConsole, 4);
+				cout << "Wrong operands:";
+				SetConsoleTextAttribute(hConsole, 7);
+				cout << code[codeInd - 1] << endl;
+				ERR_FLAG = true;
+			}
+
 			tmpIdent.value = "";
 			tmpIdent.attr = "";
 			tmpIdent.name = s[i].nameTok.lex.text;
@@ -157,144 +196,236 @@ vector<list> getIntBytes(vector<string> code, vector<Sentence> s)
 		}
 		else if (s[i].comTok.lex.text == "NOP")
 		{
-			tmpByte += 1;
+			if (s[i].Operands.size() > 0)
+			{
+				SetConsoleTextAttribute(hConsole, 4);
+				cout << "Wrong operands:";
+				SetConsoleTextAttribute(hConsole, 7);
+				cout << code[codeInd - 1] << endl;
+				ERR_FLAG = true;
+			}
+			else
+				tmpByte += 1;
 		}
 		else if (s[i].comTok.lex.text == "INC")
 		{
-			tmpByte += 1+getOpByte(s[i].Operands[0].OpV, identTable);
+			if (s[i].Operands.size() > 1 || getOpType(s[i].Operands[0].OpV) != OpType::reg)
+			{
+				SetConsoleTextAttribute(hConsole, 4);
+				cout << "Wrong operands:";
+				SetConsoleTextAttribute(hConsole, 7);
+				cout << code[codeInd - 1] << endl;
+				ERR_FLAG = true;
+			}
+			else
+				tmpByte += 1+getOpByte(s[i].Operands[0].OpV, identTable);
 		}
 		else if (s[i].comTok.lex.text == "DEC")
 		{
-			tmpByte += 1+getOpByte(s[i].Operands[0].OpV, identTable);
+			if (s[i].Operands.size() > 1 || getOpType(s[i].Operands[0].OpV) != OpType::mem)
+			{
+				SetConsoleTextAttribute(hConsole, 4);
+				cout << "Wrong operands:";
+				SetConsoleTextAttribute(hConsole, 7);
+				cout << code[codeInd - 1] << endl;
+				ERR_FLAG = true;
+			}
+			else
+				tmpByte += 1+getOpByte(s[i].Operands[0].OpV, identTable);
 		}
 		else if (s[i].comTok.lex.text == "MOV")
 		{	
-			if (s[i].Operands.size() > 0 && s[i].Operands[0].OpV[0].lexemType == s[i].Operands[1].OpV[0].lexemType)
-				tmpByte += 1;
-			else if (s[i].Operands[0].OpV[0].lexemType == LexType::REG32)
-				tmpByte += 4;
-			else if (s[i].Operands[0].OpV[0].lexemType == LexType::REG8)
-				tmpByte += 1;
-			else 
-				tmpByte += getOpByte(s[i].Operands[0].OpV, identTable);
+			if (s[i].Operands.size() < 2 || getOpType(s[i].Operands[0].OpV) != OpType::reg || getOpType(s[i].Operands[1].OpV) != OpType::imm)
+			{
+				SetConsoleTextAttribute(hConsole, 4);
+				cout << "Wrong operands:";
+				SetConsoleTextAttribute(hConsole, 7);
+				cout << code[codeInd - 1] << endl;
+				ERR_FLAG = true;
+			}
+			else
+			{
+				if (s[i].Operands.size() > 0 && s[i].Operands[0].OpV[0].lexemType == s[i].Operands[1].OpV[0].lexemType)
+					tmpByte += 1;
+				else if (s[i].Operands[0].OpV[0].lexemType == LexType::REG32)
+					tmpByte += 4;
+				else if (s[i].Operands[0].OpV[0].lexemType == LexType::REG8)
+					tmpByte += 1;
+				else
+					tmpByte += getOpByte(s[i].Operands[0].OpV, identTable);
+			}			
 
 			++tmpByte;
 		}
 		else if (s[i].comTok.lex.text == "AND")
 		{
-
-			if (s[i].Operands.size() > 0 && s[i].Operands[0].OpV[0].lexemType == s[i].Operands[1].OpV[0].lexemType)
-				tmpByte += 1;
-			else if (s[i].Operands[0].OpV[0].lexemType == LexType::REG32)
-				tmpByte += 4;
-			else if (s[i].Operands[0].OpV[0].lexemType == LexType::REG8)
-				tmpByte += 1;
+			if (s[i].Operands.size() < 2 || getOpType(s[i].Operands[0].OpV) != OpType::mem || getOpType(s[i].Operands[1].OpV) != OpType::reg)
+			{
+				SetConsoleTextAttribute(hConsole, 4);
+				cout << "Wrong operands:";
+				SetConsoleTextAttribute(hConsole, 7);
+				cout << code[codeInd - 1] << endl;
+				ERR_FLAG = true;
+			}
 			else
-				tmpByte += getOpByte(s[i].Operands[0].OpV, identTable);
+			{
+				if (s[i].Operands.size() > 0 && s[i].Operands[0].OpV[0].lexemType == s[i].Operands[1].OpV[0].lexemType)
+					tmpByte += 1;
+				else if (s[i].Operands[0].OpV[0].lexemType == LexType::REG32)
+					tmpByte += 4;
+				else if (s[i].Operands[0].OpV[0].lexemType == LexType::REG8)
+					tmpByte += 1;
+				else
+					tmpByte += getOpByte(s[i].Operands[0].OpV, identTable);
+			}			
 
 			++tmpByte;
 		}
 		else if (s[i].comTok.lex.text == "ADD")
 		{
-			if (s[i].Operands.size() > 0 && s[i].Operands[0].OpV[0].lexemType == s[i].Operands[1].OpV[0].lexemType)
-				tmpByte += 1;
-			else if(s[i].Operands[0].OpV[0].lexemType == LexType::REG32)
-				tmpByte += 4;
-			else if (s[i].Operands[0].OpV[0].lexemType == LexType::REG8)
-				tmpByte += 1;
+			if (s[i].Operands.size() < 2 || getOpType(s[i].Operands[0].OpV) != OpType::reg || getOpType(s[i].Operands[1].OpV) != OpType::reg)
+			{
+				SetConsoleTextAttribute(hConsole, 4);
+				cout << "Wrong operands:";
+				SetConsoleTextAttribute(hConsole, 7);
+				cout << code[codeInd - 1] << endl;
+				ERR_FLAG = true;
+			}
 			else
-				tmpByte += getOpByte(s[i].Operands[0].OpV, identTable);
+			{
+				if (s[i].Operands.size() > 0 && s[i].Operands[0].OpV[0].lexemType == s[i].Operands[1].OpV[0].lexemType)
+					tmpByte += 1;
+				else if (s[i].Operands[0].OpV[0].lexemType == LexType::REG32)
+					tmpByte += 4;
+				else if (s[i].Operands[0].OpV[0].lexemType == LexType::REG8)
+					tmpByte += 1;
+				else
+					tmpByte += getOpByte(s[i].Operands[0].OpV, identTable);
+			}			
 
 			++tmpByte;
 		}
 		else if (s[i].comTok.lex.text == "CMP")
 		{
-			if (s[i].Operands.size() > 0 && s[i].Operands[0].OpV[0].lexemType == s[i].Operands[1].OpV[0].lexemType)
-				tmpByte += 1;
-			else if (s[i].Operands[0].OpV[0].lexemType == LexType::REG32)
-				tmpByte += 1;
-			else if (s[i].Operands[0].OpV[0].lexemType == LexType::REG8)
-				tmpByte += 1;
+			if (s[i].Operands.size() < 2 || getOpType(s[i].Operands[0].OpV) != OpType::reg || getOpType(s[i].Operands[1].OpV) != OpType::mem)
+			{
+				SetConsoleTextAttribute(hConsole, 4);
+				cout << "Wrong operands:";
+				SetConsoleTextAttribute(hConsole, 7);
+				cout << code[codeInd - 1] << endl;
+				ERR_FLAG = true;
+			}
 			else
-				tmpByte += getOpByte(s[i].Operands[0].OpV, identTable);
+			{
+				if (s[i].Operands.size() > 0 && s[i].Operands[0].OpV[0].lexemType == s[i].Operands[1].OpV[0].lexemType)
+					tmpByte += 1;
+				else if (s[i].Operands[0].OpV[0].lexemType == LexType::REG32)
+					tmpByte += 1;
+				else if (s[i].Operands[0].OpV[0].lexemType == LexType::REG8)
+					tmpByte += 1;
+				else
+					tmpByte += getOpByte(s[i].Operands[0].OpV, identTable);
 
-			tmpByte += getOpByte(s[i].Operands[1].OpV, identTable);
-
+				tmpByte += getOpByte(s[i].Operands[1].OpV, identTable);
+			}
 			++tmpByte;
 		}
 		else if (s[i].comTok.lex.text == "OR")
 		{
-			if (s[i].Operands.size() > 0 && s[i].Operands[0].OpV[0].lexemType == s[i].Operands[1].OpV[0].lexemType)
-				tmpByte += 1;
-			else if (s[i].Operands[0].OpV[0].lexemType == LexType::REG32)
-				tmpByte += 4;
-			else if (s[i].Operands[0].OpV[0].lexemType == LexType::REG8)
-				tmpByte += 1;
+			if (s[i].Operands.size() < 2 || getOpType(s[i].Operands[0].OpV) != OpType::mem || getOpType(s[i].Operands[1].OpV) != OpType::imm)
+			{
+				SetConsoleTextAttribute(hConsole, 4);
+				cout << "Wrong operands:";
+				SetConsoleTextAttribute(hConsole, 7);
+				cout << code[codeInd - 1] << endl;
+				ERR_FLAG = true;
+			}
 			else
-				tmpByte += getOpByte(s[i].Operands[0].OpV, identTable);
-
-
-
-			if (s[i].Operands[1].OpV[0].lexemType == LexType::BIN_CONST)
 			{
-				int tmpI = stoi(s[i].Operands[1].OpV[0].lex.text, nullptr, 2);
-				
-
-				if (tmpI < 256)
+				if (s[i].Operands.size() > 0 && s[i].Operands[0].OpV[0].lexemType == s[i].Operands[1].OpV[0].lexemType)
 					tmpByte += 1;
-				else if (tmpI < 65535)
-				{
-					if (s[i].Operands[0].OpV[0].lex.text == "DWORD")
-						tmpByte += 4;
-					else
-						tmpByte += 2;
-				}					
-				else
+				else if (s[i].Operands[0].OpV[0].lexemType == LexType::REG32)
 					tmpByte += 4;
-			}
-			else if (s[i].Operands[1].OpV[0].lexemType == LexType::DEC_CONST)
-			{
-				int tmpI = stoi(s[i].Operands[1].OpV[0].lex.text);
-
-				if (tmpI < 256)
+				else if (s[i].Operands[0].OpV[0].lexemType == LexType::REG8)
 					tmpByte += 1;
-				else if (tmpI < 65535)
+				else
+					tmpByte += getOpByte(s[i].Operands[0].OpV, identTable);
+
+
+
+				if (s[i].Operands[1].OpV[0].lexemType == LexType::BIN_CONST)
 				{
-					if (s[i].Operands[0].OpV[0].lex.text == "DWORD")
-						tmpByte += 4;
+					int tmpI = stoi(s[i].Operands[1].OpV[0].lex.text, nullptr, 2);
+
+					if (tmpI < 256)
+						tmpByte += 1;
+					else if (tmpI < 65535)
+					{
+						if (s[i].Operands[0].OpV[0].lex.text == "DWORD")
+							tmpByte += 4;
+						else
+							tmpByte += 2;
+					}
 					else
-						tmpByte += 2;
+						tmpByte += 4;
 				}
-				else
-					tmpByte += 4;
-			}
-			else if (s[i].Operands[1].OpV[0].lexemType == LexType::HEX_CONST)
-			{
-				int tmpI = stoi(s[i].Operands[1].OpV[0].lex.text, nullptr, 16);
-
-				if (tmpI < 256)
-					tmpByte += 1;
-				else if (tmpI < 65535)
+				else if (s[i].Operands[1].OpV[0].lexemType == LexType::DEC_CONST)
 				{
-					if (s[i].Operands[0].OpV[0].lex.text == "DWORD")
-						tmpByte += 4;
-					else
-						tmpByte += 2;
-				}
-				else
-					tmpByte += 4;
-			}
+					int tmpI = stoi(s[i].Operands[1].OpV[0].lex.text);
 
+					if (tmpI < 256)
+						tmpByte += 1;
+					else if (tmpI < 65535)
+					{
+						if (s[i].Operands[0].OpV[0].lex.text == "DWORD")
+							tmpByte += 4;
+						else
+							tmpByte += 2;
+					}
+					else
+						tmpByte += 4;
+				}
+				else if (s[i].Operands[1].OpV[0].lexemType == LexType::HEX_CONST)
+				{
+					int tmpI = stoi(s[i].Operands[1].OpV[0].lex.text, nullptr, 16);
+
+					if (tmpI < 256)
+						tmpByte += 1;
+					else if (tmpI < 65535)
+					{
+						if (s[i].Operands[0].OpV[0].lex.text == "DWORD")
+							tmpByte += 4;
+						else
+							tmpByte += 2;
+					}
+					else
+						tmpByte += 4;
+				}
+			}
 			++tmpByte;
 		}
 		else if (s[i].comTok.lex.text == "IF")
 		{
 			tmpList.pop_back();
 
+			bool labelIsHere = false;
+
 			for (int j = 0; j < equV.size(); ++j)
 			{
 				if (s[i].Operands[0].OpV[0].lex.text == equV[j].name)
+				{
+					labelIsHere = true;
 					flag = equV[j].flag;
+				}
+			}
+
+			if (!labelIsHere)
+			{
+				SetConsoleTextAttribute(hConsole, 4);
+				cout << "Wrong identeficator:";
+				SetConsoleTextAttribute(hConsole, 7);
+				cout << code[codeInd - 1] << endl;
+				ERR_FLAG = true;
 			}
 
 			if (!flag)
@@ -388,6 +519,8 @@ vector<list> getComCodes(vector<list> l, vector<Sentence> s)
 	int codeInd = 0;
 	segment tmpSeg;
 	int lIndex = 0;
+
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
 	int i = 0;
 	while (i < s.size())
@@ -602,8 +735,27 @@ vector<list> getComCodes(vector<list> l, vector<Sentence> s)
 			for (int j = 0; j < s[i].Operands[0].OpV.size(); ++j)
 				if (s[i].Operands[0].OpV[j].lex.text == "[")
 				{
-					tmpRs += s[i].Operands[0].OpV[j + 1].lex.text + s[i].Operands[0].OpV[j + 2].lex.text + s[i].Operands[0].OpV[j + 3].lex.text;
-					tmpI = stoi(s[i].Operands[0].OpV[j + 5].lex.text);
+					if (j + 6 <= s[i].Operands[0].OpV.size())
+					{
+						tmpRs += s[i].Operands[0].OpV[j + 1].lex.text + s[i].Operands[0].OpV[j + 2].lex.text + s[i].Operands[0].OpV[j + 3].lex.text;
+						tmpI = stoi(s[i].Operands[0].OpV[j + 5].lex.text);
+						if (s[i].Operands[0].OpV[j + 6].lex.text != "]")
+						{
+							SetConsoleTextAttribute(hConsole, 4);
+							cout << "Wrong operands:";
+							SetConsoleTextAttribute(hConsole, 7);
+							cout << tmp.code << endl;
+							ERR_FLAG = true;
+						}
+					}
+					else
+					{
+						SetConsoleTextAttribute(hConsole, 4);
+						cout << "Wrong operands:";
+						SetConsoleTextAttribute(hConsole, 7);
+						cout << tmp.code << endl;
+						ERR_FLAG = true;
+					}
 				}
 
 			if (lflag != true)
@@ -860,10 +1012,27 @@ vector<list> getComCodes(vector<list> l, vector<Sentence> s)
 
 			for (int j = 0; j < s[i].Operands[1].OpV.size(); ++j)
 				if (s[i].Operands[1].OpV[j].lex.text == "[")
-				{
-					tmpRs += s[i].Operands[1].OpV[j + 1].lex.text + s[i].Operands[1].OpV[j + 2].lex.text + s[i].Operands[1].OpV[j + 3].lex.text;
-					tmpI = stoi(s[i].Operands[1].OpV[j + 5].lex.text);
-				}
+					if (j + 6 <= s[i].Operands[1].OpV.size())
+					{
+						tmpRs += s[i].Operands[1].OpV[j + 1].lex.text + s[i].Operands[1].OpV[j + 2].lex.text + s[i].Operands[1].OpV[j + 3].lex.text;
+						tmpI = stoi(s[i].Operands[1].OpV[j + 5].lex.text);
+						if (s[i].Operands[1].OpV[j + 6].lex.text != "]")
+						{
+							SetConsoleTextAttribute(hConsole, 4);
+							cout << "Wrong operands:";
+							SetConsoleTextAttribute(hConsole, 7);
+							cout << tmp.code << endl;
+							ERR_FLAG = true;
+						}
+					}
+					else
+					{
+						SetConsoleTextAttribute(hConsole, 4);
+						cout << "Wrong operands:";
+						SetConsoleTextAttribute(hConsole, 7);
+						cout << tmp.code << endl;
+						ERR_FLAG = true;
+					}
 
 			if (lflag != true)
 				tmpCode += getSCom(tmpRs) + " " + "0" + intToHex(tmpI);
@@ -919,14 +1088,25 @@ vector<list> getComCodes(vector<list> l, vector<Sentence> s)
 		{
 			int labelInt, jumpInt;
 			jumpInt = stoi(tmp.byte, nullptr, 16);
+			bool labelIsHere = false;
 
 			for (int j = 0; j < identTable.size(); ++j)
 			{
 				if (identTable[j].name == s[i].Operands[0].OpV[0].lex.text)
 				{
 					labelInt = stoi(identTable[j].value, nullptr, 16);
+					labelIsHere = true;
 					break;
 				}
+			}
+
+			if (!labelIsHere)
+			{
+				SetConsoleTextAttribute(hConsole, 4);
+				cout << "Wrong label:";
+				SetConsoleTextAttribute(hConsole, 7);
+				cout << tmp.code;
+				ERR_FLAG = true;
 			}
 
 			if (jumpInt < labelInt)
@@ -1021,10 +1201,27 @@ vector<list> getComCodes(vector<list> l, vector<Sentence> s)
 
 			for (int j = 0; j < s[i].Operands[0].OpV.size(); ++j)
 				if (s[i].Operands[0].OpV[j].lex.text == "[")
-				{
-					tmpRs += s[i].Operands[0].OpV[j + 1].lex.text + s[i].Operands[0].OpV[j + 2].lex.text + s[i].Operands[0].OpV[j + 3].lex.text;
-					tmpI = stoi(s[i].Operands[0].OpV[j + 5].lex.text);
-				}
+					if (j + 6 <= s[i].Operands[0].OpV.size())
+					{
+						tmpRs += s[i].Operands[0].OpV[j + 1].lex.text + s[i].Operands[0].OpV[j + 2].lex.text + s[i].Operands[0].OpV[j + 3].lex.text;
+						tmpI = stoi(s[i].Operands[0].OpV[j + 5].lex.text);
+						if (s[i].Operands[0].OpV[j + 6].lex.text != "]")
+						{
+							SetConsoleTextAttribute(hConsole, 4);
+							cout << "Wrong operands:";
+							SetConsoleTextAttribute(hConsole, 7);
+							cout << tmp.code;
+							ERR_FLAG = true;
+						}
+					}
+					else
+					{
+						SetConsoleTextAttribute(hConsole, 4);
+						cout << "Wrong operands:";
+						SetConsoleTextAttribute(hConsole, 7);
+						cout << tmp.code;
+						ERR_FLAG = true;
+					}
 
 			if (lflag != true)
 				tmpCode += getSCom(tmpRs) + " " + "0" + intToHex(tmpI);
@@ -1094,10 +1291,27 @@ vector<list> getComCodes(vector<list> l, vector<Sentence> s)
 
 			for (int j = 0; j < s[i].Operands[0].OpV.size(); ++j)
 				if (s[i].Operands[0].OpV[j].lex.text == "[")
-				{
-					tmpRs += s[i].Operands[0].OpV[j + 1].lex.text + s[i].Operands[0].OpV[j + 2].lex.text + s[i].Operands[0].OpV[j + 3].lex.text;
-					tmpI = stoi(s[i].Operands[0].OpV[j + 5].lex.text);
-				}
+					if (j + 6 <= s[i].Operands[0].OpV.size())
+					{
+						tmpRs += s[i].Operands[0].OpV[j + 1].lex.text + s[i].Operands[0].OpV[j + 2].lex.text + s[i].Operands[0].OpV[j + 3].lex.text;
+						tmpI = stoi(s[i].Operands[0].OpV[j + 5].lex.text);
+						if (s[i].Operands[0].OpV[j + 6].lex.text != "]")
+						{
+							SetConsoleTextAttribute(hConsole, 4);
+							cout << "Wrong operands:";
+							SetConsoleTextAttribute(hConsole, 7);
+							cout << tmp.code;
+							ERR_FLAG = true;
+						}
+					}
+					else
+					{
+						SetConsoleTextAttribute(hConsole, 4);
+						cout << "Wrong operands:";
+						SetConsoleTextAttribute(hConsole, 7);
+						cout << tmp.code << endl;
+						ERR_FLAG = true;
+					}
 
 			if (lflag != true)
 				tmpCode += getSCom(tmpRs) + " " + "0" + intToHex(tmpI);
@@ -1179,12 +1393,25 @@ vector<list> getComCodes(vector<list> l, vector<Sentence> s)
 		}
 		else if (s[i].comTok.lex.text == "IF")
 		{
+			bool labelIsHere = false;
+
 			for (int j = 0; j < equV.size(); ++j)
 			{
 				if (s[i].Operands[0].OpV[0].lex.text == equV[j].name)
+				{
+					labelIsHere = true;
 					flag = equV[j].flag;
+				}
 			}
 
+			if (!labelIsHere)
+			{
+				SetConsoleTextAttribute(hConsole, 4);
+				cout << "Wrong identeficator:";
+				SetConsoleTextAttribute(hConsole, 7);
+				cout << tmp.code << endl;
+				ERR_FLAG = true;
+			}
 
 			if (!flag)
 			{
@@ -1336,6 +1563,24 @@ string stringToHex(const string input)
 	return res;
 }
 
+OpType getOpType(vector<Token> t)
+{
+	if (t.size() == 1)
+	{
+		if (t[0].lexemType == LexType::REG8 || t[0].lexemType == LexType::REG32)
+			return OpType::reg;
+		else if (t[0].lexemType == LexType::BIN_CONST || t[0].lexemType == LexType::DEC_CONST || t[0].lexemType == LexType::HEX_CONST)
+			return OpType::imm;
+		else if (t[0].lexemType == LexType::USER_IDENT)
+			return OpType::imm;
+		else
+			return OpType::wrong;
+	}
+	else
+		return OpType::mem;
+}
+
+
 string setReversedByteSequence(const string input, short size)
 {
 	string temp;
@@ -1425,8 +1670,50 @@ void outputIntBytes(vector<list> s, vector<Token> lex, string fileName)
 	for (int i = 0; i < s.size(); ++i)
 	{
 		int row = lex[j].lex.row;
-		cout << s[i].byte << " " << s[i].com << " " << s[i].code << endl;
-		file << s[i].byte << " " << s[i].com << " " << s[i].code << endl;
+		if (s[i].com.length() < 21)
+		{
+			cout << s[i].byte << " " << s[i].com << s[i].code << endl;
+			file << s[i].byte << " " << s[i].com << s[i].code << endl;
+		}
+		else
+		{
+			string tmpC = s[i].com;
+			cout << s[i].byte << " ";
+			file << s[i].byte << " ";
+
+			for (int p = 0; p < 21; ++p)
+			{
+				cout << tmpC[p];
+				file << tmpC[p];
+			}
+
+			cout << s[i].code << endl;
+			file << s[i].code << endl;
+			int j = 21;
+
+			while (j < tmpC.length()-21)
+			{
+				cout << "     ";
+				file << "     ";
+				for (int p = j; p < j + 21; ++p)
+				{
+					cout << tmpC[p];
+					file << tmpC[p];
+				}
+				cout << endl;
+				file << endl;
+				j += 21;
+			}
+			cout << "     ";
+			file << "     ";
+			for (int p = j; p < tmpC.length() - 1; ++p)
+			{
+				cout << tmpC[p];
+				file << tmpC[p];
+			}
+			cout << endl;
+			file << endl;
+		}
 	}
 
 	cout << endl << endl;

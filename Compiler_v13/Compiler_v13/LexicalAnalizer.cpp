@@ -64,6 +64,7 @@ void LexicalAnalizer::GenerateLexemVector()
 				cout << "ERROR: ";
 				SetConsoleTextAttribute(hConsole, 7);
 				cout << "Wrong character (" << i << " row): " << code[i] << endl;
+				ERR_FLAG = true;
 
 				tempL.text += code[i][j];
 				++j;
@@ -106,6 +107,7 @@ void LexicalAnalizer::GenerateLexemVector()
 					cout << "ERROR: ";
 					SetConsoleTextAttribute(hConsole, 7);
 					cout << "No close quote (" << i << " row): " << code[i] << endl;
+					ERR_FLAG = true;
 				}
 
 				lexVec.push_back(tempL);
@@ -252,6 +254,7 @@ LexType LexicalAnalizer::GetLexType(Lexem type)
 			cout << "Wrong number: ";
 			SetConsoleTextAttribute(hConsole, 7);
 			cout << "(" << type.row << " row): " << type.text << endl;
+			ERR_FLAG = true;
 
 			return LexType::WRONG_LEX;
 		}
@@ -271,6 +274,7 @@ LexType LexicalAnalizer::GetLexType(Lexem type)
 			cout << "Identeficator length more then 8 symbols:";
 			SetConsoleTextAttribute(hConsole, 7);
 			cout << "(" << type.row << " row): " << type.text << endl;
+			ERR_FLAG = true;
 
 			return LexType::WRONG_LEX;
 		}

@@ -38,6 +38,7 @@ static vector<ident> identTable;
 vector<list> getIntBytes(vector<string>, vector<Sentence>);
 vector<list> getComCodes(vector<list>, vector<Sentence>);
 int getOpByte(vector<Token>, vector<ident>);
+OpType getOpType(vector<Token>);
 string stringToHex(const string);
 string getSCom(string);
 string intToHex(int);

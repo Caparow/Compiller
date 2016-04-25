@@ -1,6 +1,8 @@
 #pragma warning(disable: 4018)
 #include "SyntaxAnalizer.h"
 
+bool ERR_FLAG = false;
+
 int main()
 {
 	string name;
@@ -11,7 +13,9 @@ int main()
 	vector<Sentence> sen = getSentenceTable(NewLexemTable.getTokens());
 	vector<string> code = NewLexemTable.getCode();
 	vector<list> intBytes = getIntBytes(code, sen);
-	outputIntBytes(getComCodes(intBytes, sen), NewLexemTable.getTokens(), name);
+	
+	if (ERR_FLAG == false)
+		outputIntBytes(getComCodes(intBytes, sen), NewLexemTable.getTokens(), name);
 
 	system("PAUSE");
 	return 0;

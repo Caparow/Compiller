@@ -1,7 +1,7 @@
 Data1 Segment
     BinCon1    		db 			10011b
     BinCon2 		db	  		11101b
-    StrConst		db 			"Test строки."
+    StrConst		db 			"Test string или кирилица."
     DecConst		dw 			4567d
     HexConst		dd 			7856fdh
 Data1 ends
@@ -27,7 +27,6 @@ label1:
 	cmp eax, [edx+esi+12]
 	jb label1
 	jb label2
-	inc edx
 
 label2:
 	IF dfg

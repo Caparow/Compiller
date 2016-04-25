@@ -1,52 +1,65 @@
-﻿Build started 24.04.2016 22:28:07.
-     1>Project "D:\Кепаров\Compiller\Compiler_v13\Compiler_v13\Compiler_v13.vcxproj" on node 2 (ClCompile target(s)).
+﻿Build started 26.04.2016 1:16:54.
+     1>Project "D:\Кепаров\Compiller\Compiler_v13\Compiler_v13\Compiler_v13.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt SyntaxAnalizer.cpp
          SyntaxAnalizer.cpp
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(20): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(294): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(359): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(393): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(396): warning C4018: '>' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(412): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(561): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(587): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(602): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(613): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(618): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(629): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(707): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(764): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(788): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(811): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(861): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(872): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(877): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(894): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(923): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(937): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(949): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(973): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1022): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1033): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1038): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1050): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1080): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1095): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1106): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1111): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1182): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1328): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1342): warning C4018: '>' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1364): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1385): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1397): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1404): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1425): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1448): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1320): warning C4715: 'getSCom' : not all control paths return a value
-     1>Done Building Project "D:\Кепаров\Compiller\Compiler_v13\Compiler_v13\Compiler_v13.vcxproj" (ClCompile target(s)).
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(22): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(413): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(490): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(526): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(529): warning C4018: '>' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(545): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(694): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(720): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(735): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(738): warning C4018: '<=' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(765): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(770): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(781): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(859): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(916): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(940): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(963): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1013): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1015): warning C4018: '<=' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1041): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1046): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1063): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1093): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1117): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1129): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1153): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1202): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1204): warning C4018: '<=' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1230): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1235): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1247): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1277): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1292): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1294): warning C4018: '<=' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1320): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1325): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1398): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1555): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1587): warning C4018: '>' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1609): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1630): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1642): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1649): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1670): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1694): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1709): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1735): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1547): warning C4715: 'getSCom' : not all control paths return a value
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Кепаров\Compiller\Compiler_v13\Debug\Compiler_v13.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Кепаров\Compiller\Compiler_v13\Debug\Compiler_v13.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Кепаров\Compiller\Compiler_v13\Debug\Compiler_v13.lib" /MACHINE:X86 Debug\Compiler.obj
+         Debug\LexicalAnalizer.obj
+         Debug\Sentence.obj
+         Debug\SymbTable.obj
+         Debug\SyntaxAnalizer.obj
+         Compiler_v13.vcxproj -> D:\Кепаров\Compiller\Compiler_v13\Debug\Compiler_v13.exe
+     1>Done Building Project "D:\Кепаров\Compiller\Compiler_v13\Compiler_v13\Compiler_v13.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.90
+Time Elapsed 00:00:01.76

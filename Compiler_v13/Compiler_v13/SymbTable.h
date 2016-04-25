@@ -8,6 +8,8 @@
 #include <vector>
 #include <fstream>
 
+extern bool ERR_FLAG;
+
 using namespace std;
 
 bool directiveCheck(string s);

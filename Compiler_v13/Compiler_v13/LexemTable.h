@@ -8,10 +8,16 @@
 
 using namespace std;
 
-enum class LexType {
+enum class LexType 
+{
 	USER_IDENT, COMMAND, SINGLE_SYMB, TEXT_CONST, BIN_CONST, \
 	DEC_CONST, HEX_CONST, DIRECTIVE, REG32, REG8, SEG_REG, WRONG_LEX, \
 	OPERATOR, IDENT_TYPE
+};
+
+enum class OpType 
+{
+	imm, mem, reg, wrong
 };
 
 

@@ -1,8 +1,69 @@
-﻿Build started 24.04.2016 22:30:30.
+﻿Build started 26.04.2016 1:17:24.
      1>Project "D:\Кепаров\Compiller\Compiler_v13\Compiler_v13\Compiler_v13.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Compiler.cpp
-         Compiler.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt SymbTable.cpp SyntaxAnalizer.cpp
+         SymbTable.cpp
+     1>SymbTable.cpp(22): warning C4018: '<' : signed/unsigned mismatch
+     1>SymbTable.cpp(30): warning C4018: '<' : signed/unsigned mismatch
+     1>SymbTable.cpp(39): warning C4018: '<' : signed/unsigned mismatch
+     1>SymbTable.cpp(47): warning C4018: '<' : signed/unsigned mismatch
+     1>SymbTable.cpp(55): warning C4018: '<' : signed/unsigned mismatch
+     1>SymbTable.cpp(63): warning C4018: '<' : signed/unsigned mismatch
+     1>SymbTable.cpp(71): warning C4018: '<' : signed/unsigned mismatch
+     1>SymbTable.cpp(79): warning C4018: '<' : signed/unsigned mismatch
+     1>SymbTable.cpp(87): warning C4018: '<' : signed/unsigned mismatch
+     1>SymbTable.cpp(95): warning C4018: '<' : signed/unsigned mismatch
+     1>SymbTable.cpp(103): warning C4018: '<' : signed/unsigned mismatch
+     1>SymbTable.cpp(111): warning C4018: '<' : signed/unsigned mismatch
+     1>SymbTable.cpp(119): warning C4018: '<' : signed/unsigned mismatch
+         SyntaxAnalizer.cpp
+     1>SyntaxAnalizer.cpp(22): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(413): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(490): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(526): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(529): warning C4018: '>' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(545): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(694): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(720): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(735): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(738): warning C4018: '<=' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(765): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(770): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(781): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(859): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(916): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(940): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(963): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1013): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1015): warning C4018: '<=' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1041): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1046): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1063): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1093): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1117): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1129): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1153): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1202): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1204): warning C4018: '<=' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1230): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1235): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1247): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1277): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1292): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1294): warning C4018: '<=' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1320): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1325): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1398): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1555): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1587): warning C4018: '>' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1609): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1630): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1642): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1649): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1670): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1694): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1709): warning C4018: '<' : signed/unsigned mismatch
+     1>SyntaxAnalizer.cpp(1735): warning C4018: '<' : signed/unsigned mismatch
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Кепаров\Compiller\Compiler_v13\Release\Compiler_v13.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Кепаров\Compiller\Compiler_v13\Release\Compiler_v13.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Кепаров\Compiller\Compiler_v13\Release\Compiler_v13.lib" /MACHINE:X86 /SAFESEH Release\Compiler.obj
          Release\LexicalAnalizer.obj
@@ -10,12 +71,12 @@
          Release\SymbTable.obj
          Release\SyntaxAnalizer.obj
          Generating code
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\lexicalanalizer.cpp(284): warning C4715: 'LexicalAnalizer::GetLexType' : not all control paths return a value
-     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1320): warning C4715: 'getSCom' : not all control paths return a value
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\lexicalanalizer.cpp(288): warning C4715: 'LexicalAnalizer::GetLexType' : not all control paths return a value
+     1>d:\кепаров\compiller\compiler_v13\compiler_v13\syntaxanalizer.cpp(1547): warning C4715: 'getSCom' : not all control paths return a value
          Finished generating code
          Compiler_v13.vcxproj -> D:\Кепаров\Compiller\Compiler_v13\Release\Compiler_v13.exe
      1>Done Building Project "D:\Кепаров\Compiller\Compiler_v13\Compiler_v13\Compiler_v13.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:04.75
+Time Elapsed 00:00:04.09
