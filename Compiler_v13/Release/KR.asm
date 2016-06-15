@@ -19,6 +19,8 @@ Code Segment
 
 label1:
 	add eax, esi
+	add [esi+eax+2], ebp
+	
 	IF dfg1
 		add ah, bh
 	ELSE

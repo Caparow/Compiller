@@ -11,6 +11,7 @@ int main()
 	cout << endl << endl;
 	LexicalAnalizer NewLexemTable(name + ".asm");
 	vector<Sentence> sen = getSentenceTable(NewLexemTable.getTokens());
+	//OutputSentences(sen, name);
 	vector<string> code = NewLexemTable.getCode();
 	vector<list> intBytes = getIntBytes(code, sen);
 	

@@ -283,7 +283,7 @@ vector<list> getIntBytes(vector<string> code, vector<Sentence> s)
 		}
 		else if (s[i].comTok.lex.text == "ADD")
 		{
-			if (s[i].Operands.size() < 2 || getOpType(s[i].Operands[0].OpV) != OpType::reg || getOpType(s[i].Operands[1].OpV) != OpType::reg)
+			if (s[i].Operands.size() < 2 || (getOpType(s[i].Operands[0].OpV) != OpType::reg && getOpType(s[i].Operands[0].OpV) != OpType::mem) || getOpType(s[i].Operands[1].OpV) != OpType::reg)
 			{
 				SetConsoleTextAttribute(hConsole, 4);
 				cout << "Wrong operands:";
@@ -293,7 +293,11 @@ vector<list> getIntBytes(vector<string> code, vector<Sentence> s)
 			}
 			else
 			{
-				if (s[i].Operands.size() > 0 && s[i].Operands[0].OpV[0].lexemType == s[i].Operands[1].OpV[0].lexemType)
+				if (getOpType(s[i].Operands[0].OpV) == OpType::mem)
+				{
+					tmpByte += getOpByte(s[i].Operands[0].OpV, identTable);
+				}
+				else if (s[i].Operands.size() > 0 && s[i].Operands[0].OpV[0].lexemType == s[i].Operands[1].OpV[0].lexemType)
 					tmpByte += 1;
 				else if (s[i].Operands[0].OpV[0].lexemType == LexType::REG32)
 					tmpByte += 4;
@@ -327,6 +331,7 @@ vector<list> getIntBytes(vector<string> code, vector<Sentence> s)
 					tmpByte += getOpByte(s[i].Operands[0].OpV, identTable);
 
 				tmpByte += getOpByte(s[i].Operands[1].OpV, identTable);
+				--tmpByte;
 			}
 			++tmpByte;
 		}
@@ -1053,36 +1058,153 @@ vector<list> getComCodes(vector<list> l, vector<Sentence> s)
 		}
 		else if (s[i].comTok.lex.text == "ADD")
 		{
-			string tmpModRM = "11";
-
-			if (s[i].Operands[0].OpV[0].lexemType == LexType::REG32)
-				tmpCode += "03 ";
-			else if (s[i].Operands[0].OpV[0].lexemType == LexType::REG8)
-				tmpCode += "02 ";
-
-			for (int j = 0; j < s[i].Operands.size(); ++j)
+			if (getOpType(s[i].Operands[0].OpV) == OpType::mem)
 			{
-				if (s[i].Operands[j].OpV[0].lex.text == "AL" || s[i].Operands[j].OpV[0].lex.text == "EAX")
-					tmpModRM += "000";
-				else if (s[i].Operands[j].OpV[0].lex.text == "CL" || s[i].Operands[j].OpV[0].lex.text == "ECX")
-					tmpModRM += "001";
-				else if (s[i].Operands[j].OpV[0].lex.text == "DL" || s[i].Operands[j].OpV[0].lex.text == "EDX")
-					tmpModRM += "010";
-				else if (s[i].Operands[j].OpV[0].lex.text == "BL" || s[i].Operands[j].OpV[0].lex.text == "EBX")
-					tmpModRM += "011";
-				else if (s[i].Operands[j].OpV[0].lex.text == "AH" || s[i].Operands[j].OpV[0].lex.text == "ESP")
-					tmpModRM += "100";
-				else if (s[i].Operands[j].OpV[0].lex.text == "CH" || s[i].Operands[j].OpV[0].lex.text == "EBP")
-					tmpModRM += "101";
-				else if (s[i].Operands[j].OpV[0].lex.text == "DH" || s[i].Operands[j].OpV[0].lex.text == "ESI")
-					tmpModRM += "110";
-				else if (s[i].Operands[j].OpV[0].lex.text == "BH" || s[i].Operands[j].OpV[0].lex.text == "EDI")
-					tmpModRM += "111";
-			}	
+				for (int j = 0; j < s[i].Operands[0].OpV.size(); ++j)
+				{
+					if (s[i].Operands[0].OpV[j].lex.text == "ES")
+						tmpCode += "26: ";
+					else if (s[i].Operands[0].OpV[j].lex.text == "CS")
+						tmpCode += "2E: ";
+					else if (s[i].Operands[0].OpV[j].lex.text == "SS")
+						tmpCode += "36: ";
+					else if (s[i].Operands[0].OpV[j].lex.text == "DS")
+						tmpCode += "3E: ";
+					else if (s[i].Operands[0].OpV[j].lex.text == "FS")
+						tmpCode += "64: ";
+					else if (s[i].Operands[0].OpV[j].lex.text == "GS")
+						tmpCode += "65: ";
+				}
 
-			int tmpI = stoi(tmpModRM, nullptr, 2);
+				if (s[i].Operands[1].OpV[0].lexemType == LexType::REG32)
+					tmpCode += "01 ";
+				else if (s[i].Operands[1].OpV[0].lexemType == LexType::REG8)
+					tmpCode += "00 ";
 
-			tmpCode += intToHex(tmpI);
+				bool lflag = false;
+				string tmpL = "";
+				for (int j = 0; j < s[i].Operands[1].OpV.size(); ++j)
+					if (s[i].Operands[1].OpV[j].lexemType == LexType::USER_IDENT)
+					{
+					lflag = true;
+					tmpL = s[i].Operands[1].OpV[j].lex.text;
+					}
+
+				if (lflag)
+				{
+					if (s[i].Operands[1].OpV[0].lex.text == "AL" || s[i].Operands[1].OpV[0].lex.text == "EAX")
+						tmpCode += "84";
+					else if (s[i].Operands[1].OpV[0].lex.text == "CL" || s[i].Operands[1].OpV[0].lex.text == "ECX")
+						tmpCode += "8C";
+					else if (s[i].Operands[1].OpV[0].lex.text == "DL" || s[i].Operands[1].OpV[0].lex.text == "EDX")
+						tmpCode += "94";
+					else if (s[i].Operands[1].OpV[0].lex.text == "BL" || s[i].Operands[1].OpV[0].lex.text == "EBX")
+						tmpCode += "9C";
+					else if (s[i].Operands[1].OpV[0].lex.text == "AH" || s[i].Operands[1].OpV[0].lex.text == "ESP")
+						tmpCode += "A4";
+					else if (s[i].Operands[1].OpV[0].lex.text == "CH" || s[i].Operands[1].OpV[0].lex.text == "EBP")
+						tmpCode += "AC";
+					else if (s[i].Operands[1].OpV[0].lex.text == "DH" || s[i].Operands[1].OpV[0].lex.text == "ESI")
+						tmpCode += "B4";
+					else if (s[i].Operands[1].OpV[0].lex.text == "BH" || s[i].Operands[1].OpV[0].lex.text == "EDI")
+						tmpCode += "BC";
+				}
+				else
+				{
+					if (s[i].Operands[1].OpV[0].lex.text == "AL" || s[i].Operands[1].OpV[0].lex.text == "EAX")
+						tmpCode += "44";
+					else if (s[i].Operands[1].OpV[0].lex.text == "CL" || s[i].Operands[1].OpV[0].lex.text == "ECX")
+						tmpCode += "4C";
+					else if (s[i].Operands[1].OpV[0].lex.text == "DL" || s[i].Operands[1].OpV[0].lex.text == "EDX")
+						tmpCode += "54";
+					else if (s[i].Operands[1].OpV[0].lex.text == "BL" || s[i].Operands[1].OpV[0].lex.text == "EBX")
+						tmpCode += "5C";
+					else if (s[i].Operands[1].OpV[0].lex.text == "AH" || s[i].Operands[1].OpV[0].lex.text == "ESP")
+						tmpCode += "64";
+					else if (s[i].Operands[1].OpV[0].lex.text == "CH" || s[i].Operands[1].OpV[0].lex.text == "EBP")
+						tmpCode += "6C";
+					else if (s[i].Operands[1].OpV[0].lex.text == "DH" || s[i].Operands[1].OpV[0].lex.text == "ESI")
+						tmpCode += "74";
+					else if (s[i].Operands[1].OpV[0].lex.text == "BH" || s[i].Operands[1].OpV[0].lex.text == "EDI")
+						tmpCode += "7C";
+				}
+
+				string tmpRs = "";
+				int tmpI;
+
+				for (int j = 0; j < s[i].Operands[0].OpV.size(); ++j)
+					if (s[i].Operands[0].OpV[j].lex.text == "[")
+						if (j + 6 <= s[i].Operands[0].OpV.size())
+						{
+					tmpRs += s[i].Operands[0].OpV[j + 1].lex.text + s[i].Operands[0].OpV[j + 2].lex.text + s[i].Operands[0].OpV[j + 3].lex.text;
+					tmpI = stoi(s[i].Operands[0].OpV[j + 5].lex.text);
+					if (s[i].Operands[0].OpV[j + 6].lex.text != "]")
+					{
+						SetConsoleTextAttribute(hConsole, 4);
+						cout << "Wrong operands:";
+						SetConsoleTextAttribute(hConsole, 7);
+						cout << tmp.code << endl;
+						ERR_FLAG = true;
+					}
+						}
+						else
+						{
+							SetConsoleTextAttribute(hConsole, 4);
+							cout << "Wrong operands:";
+							SetConsoleTextAttribute(hConsole, 7);
+							cout << tmp.code << endl;
+							ERR_FLAG = true;
+						}
+
+				if (lflag != true)
+					tmpCode += getSCom(tmpRs) + " " + "0" + intToHex(tmpI);
+				else
+				{
+					for (int p = 0; p < identTable.size(); ++p)
+						if (identTable[p].name == tmpL)
+							tmpI += stoi(identTable[p].value, nullptr, 16);
+
+					string tmpSm;
+					for (int p = 0; p < 8 - intToHex(tmpI).length(); ++p)
+						tmpSm += "0";
+
+					tmpSm += intToHex(tmpI);
+					tmpCode += getSCom(tmpRs) + " " + tmpSm + " R";
+				}
+			}
+			else
+			{
+				string tmpModRM = "11";
+
+				if (s[i].Operands[0].OpV[0].lexemType == LexType::REG32)
+					tmpCode += "03 ";
+				else if (s[i].Operands[0].OpV[0].lexemType == LexType::REG8)
+					tmpCode += "02 ";
+
+				for (int j = 0; j < s[i].Operands.size(); ++j)
+				{
+					if (s[i].Operands[j].OpV[0].lex.text == "AL" || s[i].Operands[j].OpV[0].lex.text == "EAX")
+						tmpModRM += "000";
+					else if (s[i].Operands[j].OpV[0].lex.text == "CL" || s[i].Operands[j].OpV[0].lex.text == "ECX")
+						tmpModRM += "001";
+					else if (s[i].Operands[j].OpV[0].lex.text == "DL" || s[i].Operands[j].OpV[0].lex.text == "EDX")
+						tmpModRM += "010";
+					else if (s[i].Operands[j].OpV[0].lex.text == "BL" || s[i].Operands[j].OpV[0].lex.text == "EBX")
+						tmpModRM += "011";
+					else if (s[i].Operands[j].OpV[0].lex.text == "AH" || s[i].Operands[j].OpV[0].lex.text == "ESP")
+						tmpModRM += "100";
+					else if (s[i].Operands[j].OpV[0].lex.text == "CH" || s[i].Operands[j].OpV[0].lex.text == "EBP")
+						tmpModRM += "101";
+					else if (s[i].Operands[j].OpV[0].lex.text == "DH" || s[i].Operands[j].OpV[0].lex.text == "ESI")
+						tmpModRM += "110";
+					else if (s[i].Operands[j].OpV[0].lex.text == "BH" || s[i].Operands[j].OpV[0].lex.text == "EDI")
+						tmpModRM += "111";
+				}
+
+				int tmpI = stoi(tmpModRM, nullptr, 2);
+
+				tmpCode += intToHex(tmpI);
+			}			
 		}
 		else if (s[i].comTok.lex.text == "JB")
 		{
@@ -1619,7 +1741,7 @@ int getOpByte(vector<Token> t, vector<ident> identTable)
 		return 1;
 	else if (t[0].lexemType == LexType::REG32 && t.size() == 1)
 		return 0;
-	else if (t[0].lexemType == LexType::IDENT_TYPE)
+	else if (t[0].lexemType == LexType::IDENT_TYPE || t[0].lex.text == "[" || t[0].lexemType == LexType::SEG_REG)
 	{
 		++tmpByte;
 
@@ -1627,14 +1749,14 @@ int getOpByte(vector<Token> t, vector<ident> identTable)
 			tmpByte += 1;
 
 
-		for (int i = 1; i < t.size(); ++i)
+		for (int i = 0; i < t.size(); ++i)
 		{
 			if (t[i].lexemType == LexType::USER_IDENT)
 			{
 				tmpByte += 3;
 			}
-				if (t[i].lexemType == LexType::SEG_REG || t[i].lexemType == LexType::REG32)
-					++tmpByte;
+			if (t[i].lexemType == LexType::SEG_REG || t[i].lexemType == LexType::REG32)
+				++tmpByte;
 
 		}
 	}
@@ -1692,7 +1814,7 @@ void outputIntBytes(vector<list> s, vector<Token> lex, string fileName)
 			int j = 21;
 
 			while (j < tmpC.length()-21)
-			{
+			{ 
 				cout << "     ";
 				file << "     ";
 				for (int p = j; p < j + 21; ++p)
